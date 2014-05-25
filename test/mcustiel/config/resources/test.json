@@ -1,0 +1,30 @@
+{
+    "PRODUCTION": {
+        "DB": {
+            "user": "root",
+            "pass": "root",
+            "host": "localhost"
+        }
+    },
+    "STAGE": {
+        "DB": {
+            "user": "root",
+            "pass": "root",
+            "host": "localhost"
+        }
+    },
+    "LOCAL": {
+        "DB": {
+            "user": "root",
+            "pass": "root",
+            "host": "localhost"
+        }
+    },
+    "TEST": {
+        "DB": {
+            "user": "root",
+            "pass": "root",
+            "host": "localhost"
+        }
+    }
+}
