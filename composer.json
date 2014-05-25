@@ -1,0 +1,9 @@
+{
+	"autoload": {
+        "psr-4": {"mcustiel\\": "src/mcustiel"}
+    },
+	"name" : "mcustiel/php-simple-config",
+	"require" : {
+		"php" : ">=5.4"
+	}
+}
