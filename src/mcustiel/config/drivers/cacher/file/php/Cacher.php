@@ -12,8 +12,8 @@ class Cacher extends BaseCacher
 
     protected function getUnserializedConfig()
     {
-        include $this->fullPath;
-        return $config;
+        @include $this->fullPath;
+        return isset($config)? $config : null;
     }
 
     protected function generateFilePath()

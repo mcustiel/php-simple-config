@@ -12,7 +12,8 @@ class Cacher extends BaseCacher
 
     protected function getUnserializedConfig()
     {
-        return unserialize(file_get_contents($this->fullPath));
+        $return = file_get_contents($this->fullPath);
+        return ($return === false)? null : unserialize($return);
     }
 
     protected function generateFilePath()

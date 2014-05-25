@@ -60,14 +60,14 @@ class Cacher implements ConfigCacher
         $this->client->set($this->cacheName, $this->getSerializedConfig($config->getFullConfigAsArray()));
     }
 
-    public function exists()
-    {
-        return $this->client->get($this->cacheName) !== false;
-    }
-
     public function load()
     {
-        return new Config($this->getUnserializedConfig());
+        $return = $this->getUnserializedConfig();
+        if ($return != null) {
+            $return = new Config($return);
+        }
+
+        return $return;
     }
 
     private function getSerializedConfig(array $config)
@@ -78,9 +78,7 @@ class Cacher implements ConfigCacher
     private function getUnserializedConfig()
     {
         $config = $this->client->get($this->cacheName);
-        if ($config !== null) {
-            $config = unserialize($config);
-        }
+        $config = ($config === false)? null : unserialize($config);
 
         return $config;
     }

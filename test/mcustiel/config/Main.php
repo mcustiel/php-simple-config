@@ -63,7 +63,11 @@ class Main
 		$loader = new ConfigLoader(__DIR__ . "/resources/test.ini",
 			new \mcustiel\config\drivers\reader\ini\Reader()
 		);
-		$config = $loader->load();
+		$init = microtime(true);
+		for ($i = 0; $i < 50000; $i++) {
+		    $config = $loader->load();
+		}
+		echo "Time = " . (microtime(true) - $init) . PHP_EOL;
 		var_export($config->getFullConfigAsArray());
 		echo PHP_EOL . PHP_EOL;
 
@@ -74,7 +78,11 @@ class Main
 			new \mcustiel\config\drivers\reader\ini\Reader(),
 			new \mcustiel\config\drivers\cacher\file\php\Cacher($cacherConfig)
 		);
-		$config = $loader->load();
+		$init = microtime(true);
+		for ($i = 0; $i < 50000; $i++) {
+		    $config = $loader->load();
+		}
+		echo "Time = " . (microtime(true) - $init) . PHP_EOL;
 		var_export($config->getFullConfigAsArray());
 		echo PHP_EOL . PHP_EOL;
 
@@ -85,18 +93,26 @@ class Main
 			new \mcustiel\config\drivers\reader\ini\Reader(),
 			new \mcustiel\config\drivers\cacher\file\php\Cacher($cacherConfig)
 		);
-		$config = $loader->load();
+		$init = microtime(true);
+		for ($i = 0; $i < 50000; $i++) {
+		    $config = $loader->load();
+		}
+		echo "Time = " . (microtime(true) - $init) . PHP_EOL;
 		var_export($config->getFullConfigAsArray());
 		echo PHP_EOL . PHP_EOL;
 
-		echo "############ LOADER FOR INI WITH PHP SERIALIZED CACHE ################\n";
+		echo "############ LOADER FOR INI WITH MEMCACHE CACHE ################\n";
 		$cacherConfig = new \stdClass();
 		$cacherConfig->path = __DIR__ . "/resources/";
 		$loader = new ConfigLoader(__DIR__ . "/resources/test.ini",
 		    new \mcustiel\config\drivers\reader\ini\Reader(),
 		    new \mcustiel\config\drivers\cacher\memcache\Cacher($cacherConfig)
 		);
-		$config = $loader->load();
+		$init = microtime(true);
+		for ($i = 0; $i < 50000; $i++) {
+            $config = $loader->load();
+		}
+		echo "Time = " . (microtime(true) - $init) . PHP_EOL;
 		var_export($config->getFullConfigAsArray());
 		echo PHP_EOL . PHP_EOL;
     }

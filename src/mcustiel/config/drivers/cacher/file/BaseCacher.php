@@ -51,14 +51,14 @@ abstract class BaseCacher implements ConfigCacher
         file_put_contents($this->fullPath, $this->getSerializedConfig($config->getFullConfigAsArray()));
     }
 
-    public function exists()
-    {
-        return file_exists($this->fullPath);
-    }
-
     public function load()
     {
-        return new Config($this->getUnserializedConfig());
+        $return = $this->getUnserializedConfig();
+        if ($return != null) {
+            $return = new Config($return);
+        }
+
+        return $return;
     }
 
     abstract protected function generateFilePath();

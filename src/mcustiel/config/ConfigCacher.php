@@ -8,5 +8,4 @@ interface ConfigCacher
     public function setName($name);
     public function save(Config $config);
     public function load();
-    public function exists();
 }

@@ -18,13 +18,12 @@ class ConfigLoader
 
     public function load()
     {
-        $this->openCache();
-        $this->loadFromCache();
-        if ($this->config === null) {
+        if ($this->cacher !== null) {
+            $this->readFromCache();
+        } else {
             $this->read();
-            $this->saveInCache();
         }
-        $this->closeCache();
+
         return $this->config;
     }
 
@@ -33,35 +32,36 @@ class ConfigLoader
         return $this->config;
     }
 
+    private function readFromCache()
+    {
+        $this->openCache();
+        $this->cacher->setName($this->name);
+        $this->loadFromCache();
+        if ($this->config === null) {
+            $this->read();
+            $this->saveInCache();
+        }
+        $this->closeCache();
+    }
+
     private function openCache()
     {
-        if ($this->cacher !== null) {
-            $this->cacher->open();
-        }
+         $this->cacher->open();
     }
 
     private function closeCache()
     {
-        if ($this->cacher !== null) {
-            $this->cacher->close();
-        }
+        $this->cacher->close();
     }
 
     private function saveInCache()
     {
-        if ($this->cacher !== null) {
-            $this->cacher->save($this->config);
-        }
+        $this->cacher->save($this->config);
     }
 
     private function loadFromCache()
     {
-        if ($this->cacher !== null) {
-            $this->cacher->setName($this->name);
-            if ($this->cacher->exists()) {
-                $this->config = $this->cacher->load();
-            }
-        }
+        $this->config = $this->cacher->load();
     }
 
     private function read()
