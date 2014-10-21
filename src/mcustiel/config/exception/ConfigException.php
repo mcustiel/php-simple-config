@@ -5,10 +5,12 @@ class ConfigException extends \Exception
 {
     private static $exceptions = array(
         0 => "Unknown exception",
-        "The selected key does not exist"
+        "The selected key does not exist",
+        "Error parsing config"
     );
     const EXCEPTION_UNKNOWN = 0;
     const EXCEPTION_KEY_DOES_NOT_EXIST = 1;
+    const EXCEPTION_ERROR_PARSING_CONFIG = 2;
 
     public function __construct($exceptionId, \Exception $previous = null)
     {
