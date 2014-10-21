@@ -1,8 +1,18 @@
 {
-	"autoload": {
-        "psr-4": {"mcustiel\\": "src/mcustiel"}
-    },
+	"keywords" : [
+		"config",
+		"manager",
+		"multiformat"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"mcustiel\\config\\" : "src"
+		}
+	},
 	"name" : "mcustiel/php-simple-config",
+	"type" : "library",
+	"description" : "A simple library to manage configuration files in different formats",
+	"license" : "GPL-2.0+",
 	"require" : {
 		"php" : ">=5.4"
 	}
