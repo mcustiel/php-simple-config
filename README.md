@@ -10,6 +10,7 @@ php-simple-config uses a minimalistic approach and supports different types of c
 * PHP files (containing a config array).
 * INI files
 * JSON files
+
 The component can read and write these configuration formats.
 
 Also, it allows the developer to cache the configurations to increase the performance when accessing to it. This functionality is experimental (currently testing the increment in performance) but can be used, the types of cache supported are:
