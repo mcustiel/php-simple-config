@@ -1,41 +1,40 @@
 <?php
-namespace Mcustiel\Config;
+namespace Functional\Config;
 
 use Mcustiel\Config\Config;
 use Mcustiel\Config\ConfigLoader;
+use Mcustiel\Config\Drivers\Reader\php\Reader as PhpReader;
+use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
+use Mcustiel\Config\Drivers\Reader\json\Reader as JsonReader;
 
-class Main
+class FunctionalTest extends \PHPUnit_Framework_TestCase
 {
-    public function run()
+    public function testPhpReader()
     {
-		echo "###################### PHP READER ###################################\n";
-        $reader = new Mcustiel\Config\Drivers\Reader\php\Reader();
-		$reader->read(__DIR__ . "/resources/test.php");
+        $reader = new PhpReader();
+		$reader->read(FIXTURES_PATH . "/test.php");
         $config = $reader->getConfig();
-        var_export($config->getFullConfigAsArray());
-        echo PHP_EOL;
-        var_export($config->getFullConfigAsObject());
-        echo PHP_EOL . PHP_EOL;
+        // TODO: Check config
+    }
 
-		echo "###################### INI READER ###################################\n";
-		$reader =  new Mcustiel\Config\Drivers\Reader\ini\Reader();
-		$reader->read(__DIR__ . "/resources/test.ini");
+    public function testIniReader()
+    {
+		$reader =  new IniReader();
+		$reader->read(FIXTURES_PATH . "/test.ini");
         $config = $reader->getConfig();
-		$iniConfig = $config;
-        var_export($config->getFullConfigAsArray());
-        echo PHP_EOL;
-        var_export($config->getFullConfigAsObject());
-        echo PHP_EOL . PHP_EOL;
+        // TODO: Check config
+    }
 
-		echo "###################### JSON READER ###################################\n";
-		$reader = new Mcustiel\Config\Drivers\Reader\json\Reader();
-		$reader->read(__DIR__ . "/resources/test.json");
+    public function testJsonReader()
+    {
+		$reader = new JsonReader();
+		$reader->read(FIXTURES_PATH . "/test.json");
         $config = $reader->getConfig();
-        var_export($config->getFullConfigAsArray());
-        echo PHP_EOL;
-        var_export($config->getFullConfigAsObject());
-        echo PHP_EOL . PHP_EOL;
+        // TODO: Check config
+    }
 
+    private function thisIsNotTestYet()
+    {
 		echo "###################### PHP WRITER ###################################\n";
 		$writer = new Mcustiel\Config\Drivers\Writer\php\Writer($iniConfig);
 		$writer->write(__DIR__ . "/resources/test-written.php");
