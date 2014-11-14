@@ -1,9 +1,9 @@
 <?php
-namespace mcustiel\config\drivers\reader\php;
+namespace Mcustiel\Config\Drivers\Reader\php;
 
-use mcustiel\config\ConfigReader;
-use mcustiel\config\Config;
-use mcustiel\config\drivers\reader\BaseReader;
+use Mcustiel\Config\ConfigReader;
+use Mcustiel\Config\Config;
+use Mcustiel\Config\Drivers\Reader\BaseReader;
 
 class Reader extends BaseReader implements ConfigReader
 {

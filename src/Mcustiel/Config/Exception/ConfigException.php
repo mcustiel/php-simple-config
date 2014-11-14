@@ -1,5 +1,5 @@
 <?php
-namespace mcustiel\config\exception;
+namespace Mcustiel\Config\Exception;
 
 class ConfigException extends \Exception
 {

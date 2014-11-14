@@ -1,7 +1,7 @@
 <?php
-namespace mcustiel\config\drivers\cacher\file\php;
+namespace Mcustiel\Config\Drivers\Cacher\file\php;
 
-use mcustiel\config\drivers\cacher\file\BaseCacher;
+use Mcustiel\Config\Drivers\Cacher\file\BaseCacher;
 
 class Cacher extends BaseCacher
 {

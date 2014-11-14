@@ -1,10 +1,10 @@
 <?php
-namespace mcustiel\config\drivers\reader\json;
+namespace Mcustiel\Config\Drivers\Reader\json;
 
-use mcustiel\config\ConfigReader;
-use mcustiel\config\Config;
-use mcustiel\config\drivers\reader\BaseReader;
-use mcustiel\config\exception\ConfigException;
+use Mcustiel\Config\ConfigReader;
+use Mcustiel\Config\Config;
+use Mcustiel\Config\Drivers\Reader\BaseReader;
+use Mcustiel\Config\Exception\ConfigException;
 
 class Reader extends BaseReader implements ConfigReader
 {

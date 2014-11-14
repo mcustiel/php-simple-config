@@ -1,5 +1,5 @@
 <?php
-namespace mcustiel\config\util;
+namespace Mcustiel\Config\Util;
 
 class ObjectArrayConverter
 {

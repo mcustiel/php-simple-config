@@ -1,7 +1,7 @@
 <?php
-namespace mcustiel\config\drivers\writer\ini;
+namespace Mcustiel\Config\Drivers\Writer\ini;
 
-use mcustiel\config\Config;
+use Mcustiel\Config\Config;
 
 class Writer
 {

@@ -1,10 +1,10 @@
 <?php
-namespace mcustiel\config\drivers\reader\ini;
+namespace Mcustiel\Config\Drivers\Reader\ini;
 
-use mcustiel\config\ConfigReader;
-use mcustiel\config\Config;
-use mcustiel\config\drivers\reader\ini\helper\IniConfigExtender;
-use mcustiel\config\drivers\reader\BaseReader;
+use Mcustiel\Config\ConfigReader;
+use Mcustiel\Config\Config;
+use Mcustiel\Config\Drivers\Reader\ini\Helper\IniConfigExtender;
+use Mcustiel\Config\Drivers\Reader\BaseReader;
 
 class Reader extends BaseReader implements ConfigReader
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace mcustiel\config\drivers\cacher\file;
+namespace Mcustiel\Config\Drivers\Cacher\file;
 
-use mcustiel\config\ConfigCacher;
-use mcustiel\config\Config;
+use Mcustiel\Config\ConfigCacher;
+use Mcustiel\Config\Config;
 
 abstract class BaseCacher implements ConfigCacher
 {

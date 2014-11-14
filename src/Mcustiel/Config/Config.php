@@ -1,9 +1,9 @@
 <?php
 
-namespace mcustiel\config;
+namespace Mcustiel\Config;
 
-use mcustiel\config\util\ObjectArrayConverter;
-use mcustiel\config\exception\ConfigException;
+use Mcustiel\Config\Util\ObjectArrayConverter;
+use Mcustiel\Config\Exception\ConfigException;
 
 class Config
 {

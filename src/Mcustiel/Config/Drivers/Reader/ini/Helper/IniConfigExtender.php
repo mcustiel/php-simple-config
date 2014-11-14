@@ -1,5 +1,5 @@
 <?php
-namespace mcustiel\config\drivers\reader\ini\helper;
+namespace Mcustiel\Config\Drivers\Reader\ini\Helper;
 
 class IniConfigExtender
 {

@@ -1,41 +1,41 @@
 <?php
-namespace Tests\config;
+namespace Unit\Config;
 
-use mcustiel\config\ConfigLoader;
+use Mcustiel\Config\ConfigLoader;
 
 class ConfigLoaderWithCacherTest extends \PHPUnit_Framework_TestCase
 {
     const CONFIG_FILE = 'config.cfg';
     /**
      * Mock
-     * @var \mcustiel\config\ConfigReader
+     * @var Mcustiel\Config\ConfigReader
      */
     private $reader;
     /**
      * Mock
-     * @var \mcustiel\config\Config
+     * @var Mcustiel\Config\Config
      */
     private $config;
     /**
      * Mock
-     * @var \mcustiel\config\ConfigCacher
+     * @var Mcustiel\Config\ConfigCacher
      */
     private $cacher;
     /**
      * Object underTest
-     * @var \mcustiel\config\ConfigLoader
+     * @var Mcustiel\Config\ConfigLoader
      */
     private $loader;
 
     public function setUp()
     {
-        $this->reader = $this->getMockBuilder('\\mcustiel\\config\\ConfigReader')
+        $this->reader = $this->getMockBuilder('\Mcustiel\\Config\\ConfigReader')
             ->disableOriginalConstructor()
             ->getMOck();
-        $this->cacher = $this->getMockBuilder('\\mcustiel\\config\\ConfigCacher')
+        $this->cacher = $this->getMockBuilder('\Mcustiel\\Config\\ConfigCacher')
             ->disableOriginalConstructor()
             ->getMOck();
-        $this->config = $this->getMockBuilder('\\mcustiel\\config\\Config')
+        $this->config = $this->getMockBuilder('\Mcustiel\\Config\\Config')
             ->disableOriginalConstructor()
             ->getMOck();
         $this->loader = new ConfigLoader(self::CONFIG_FILE, $this->reader, $this->cacher);

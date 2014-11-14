@@ -1,7 +1,7 @@
 <?php
-namespace mcustiel\config\drivers\cacher\file\serialize;
+namespace Mcustiel\Config\Drivers\Cacher\file\serialize;
 
-use mcustiel\config\drivers\cacher\file\BaseCacher;
+use Mcustiel\Config\Drivers\Cacher\file\BaseCacher;
 
 class Cacher extends BaseCacher
 {

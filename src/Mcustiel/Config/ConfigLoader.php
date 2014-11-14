@@ -1,22 +1,22 @@
 <?php
 
-namespace mcustiel\config;
+namespace Mcustiel\Config;
 
 class ConfigLoader
 {
     /**
      *
-     * @var \mcustiel\config\ConfigReader
+     * @var Mcustiel\Config\ConfigReader
      */
     private $reader;
     /**
      *
-     * @var \mcustiel\config\Config
+     * @var Mcustiel\Config\Config
      */
     private $config;
     /**
      *
-     * @var \mcustiel\config\ConfigCacher
+     * @var Mcustiel\Config\ConfigCacher
      */
     private $cacher;
     private $name;

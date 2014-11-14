@@ -1,8 +1,8 @@
 <?php
-namespace mcustiel\config\drivers\cacher\memcache;
+namespace Mcustiel\Config\Drivers\Cacher\memcache;
 
-use mcustiel\config\ConfigCacher;
-use mcustiel\config\Config;
+use Mcustiel\Config\ConfigCacher;
+use Mcustiel\Config\Config;
 
 class Cacher implements ConfigCacher
 {

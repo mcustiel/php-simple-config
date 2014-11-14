@@ -1,7 +1,7 @@
 <?php
-namespace Tests\config;
+namespace Unit\Config;
 
-use mcustiel\config\Config;
+use Mcustiel\Config\Config;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     /**
      * The object under test
-     * @var \mcustiel\config\Config
+     * @var Mcustiel\Config\Config
      */
     private $config;
 
@@ -51,7 +51,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException mcustiel\config\exception\ConfigException
+     * @expectedException Mcustiel\Config\Exception\ConfigException
      * @expectedExceptionMessage The selected key does not exist
      */
     public function testGetWithNonExistentKey()
@@ -62,7 +62,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testGetWithConfigValue()
     {
         $db = $this->config->get('db');
-        $this->assertInstanceOf('\\mcustiel\\config\\Config', $db);
+        $this->assertInstanceOf('\Mcustiel\\config\\Config', $db);
         $this->assertEquals($this->configArray['db'], $db->getFullConfigAsArray());
     }
 

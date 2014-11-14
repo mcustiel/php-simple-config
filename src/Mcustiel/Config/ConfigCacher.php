@@ -1,6 +1,5 @@
 <?php
-
-namespace mcustiel\config;
+namespace Mcustiel\Config;
 
 interface ConfigCacher
 {

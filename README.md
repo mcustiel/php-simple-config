@@ -73,7 +73,7 @@ $config = array(
 
 Then you can access the config from your code using a Reader object:
 ```php
-$reader = new \mcustiel\config\drivers\reader\php\Reader();
+$reader = new Mcustiel\Config\Drivers\Reader\php\Reader();
 $reader->read(__DIR__ . "/resources/test.php");
 $config = $reader->getConfig();
 ```
@@ -90,7 +90,7 @@ $config->get('PRODUCTION')->get('DB')->get('user'); // Will return 'root'
 ###Writing configuration
 To write the configuration to a file you need a Writer object: 
 ```php
-$writer = new \mcustiel\config\drivers\writer\ini\Writer($iniConfig);
+$writer = new Mcustiel\Config\Drivers\Writer\ini\Writer($iniConfig);
 $writer->write(__DIR__ . "/resources/test-written.ini");
 ```
 > *NOTE*

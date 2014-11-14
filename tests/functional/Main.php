@@ -1,15 +1,15 @@
 <?php
-namespace mcustiel\config;
+namespace Mcustiel\Config;
 
-use mcustiel\config\Config;
-use mcustiel\config\ConfigLoader;
+use Mcustiel\Config\Config;
+use Mcustiel\Config\ConfigLoader;
 
 class Main
 {
     public function run()
     {
 		echo "###################### PHP READER ###################################\n";
-        $reader = new \mcustiel\config\drivers\reader\php\Reader();
+        $reader = new Mcustiel\Config\Drivers\Reader\php\Reader();
 		$reader->read(__DIR__ . "/resources/test.php");
         $config = $reader->getConfig();
         var_export($config->getFullConfigAsArray());
@@ -18,7 +18,7 @@ class Main
         echo PHP_EOL . PHP_EOL;
 
 		echo "###################### INI READER ###################################\n";
-		$reader =  new \mcustiel\config\drivers\reader\ini\Reader();
+		$reader =  new Mcustiel\Config\Drivers\Reader\ini\Reader();
 		$reader->read(__DIR__ . "/resources/test.ini");
         $config = $reader->getConfig();
 		$iniConfig = $config;
@@ -28,7 +28,7 @@ class Main
         echo PHP_EOL . PHP_EOL;
 
 		echo "###################### JSON READER ###################################\n";
-		$reader = new \mcustiel\config\drivers\reader\json\Reader();
+		$reader = new Mcustiel\Config\Drivers\Reader\json\Reader();
 		$reader->read(__DIR__ . "/resources/test.json");
         $config = $reader->getConfig();
         var_export($config->getFullConfigAsArray());
@@ -37,17 +37,17 @@ class Main
         echo PHP_EOL . PHP_EOL;
 
 		echo "###################### PHP WRITER ###################################\n";
-		$writer = new \mcustiel\config\drivers\writer\php\Writer($iniConfig);
+		$writer = new Mcustiel\Config\Drivers\Writer\php\Writer($iniConfig);
 		$writer->write(__DIR__ . "/resources/test-written.php");
 		echo file_get_contents(__DIR__ . "/resources/test-written.php") . PHP_EOL . PHP_EOL;
 
 		echo "###################### JSON WRITER ###################################\n";
-		$writer = new \mcustiel\config\drivers\writer\json\Writer($iniConfig);
+		$writer = new Mcustiel\Config\Drivers\Writer\json\Writer($iniConfig);
 		$writer->write(__DIR__ . "/resources/test-written.json");
 		echo file_get_contents(__DIR__ . "/resources/test-written.json") . PHP_EOL . PHP_EOL;
 
 		echo "###################### INI WRITER ###################################\n";
-		$writer = new \mcustiel\config\drivers\writer\ini\Writer($iniConfig);
+		$writer = new Mcustiel\Config\Drivers\Writer\ini\Writer($iniConfig);
 		$writer->write(__DIR__ . "/resources/test-written.ini");
 		echo file_get_contents(__DIR__ . "/resources/test-written.ini") . PHP_EOL . PHP_EOL;
 
@@ -61,7 +61,7 @@ class Main
 
 		echo "################ LOADER FOR INI WITHOUT CACHE #######################\n";
 		$loader = new ConfigLoader(__DIR__ . "/resources/test.ini",
-			new \mcustiel\config\drivers\reader\ini\Reader()
+			new Mcustiel\Config\Drivers\Reader\ini\Reader()
 		);
 		$init = microtime(true);
 		for ($i = 0; $i < 50000; $i++) {
@@ -75,8 +75,8 @@ class Main
 		$cacherConfig = new \stdClass();
 		$cacherConfig->path = __DIR__ . "/resources/";
 		$loader = new ConfigLoader(__DIR__ . "/resources/test.ini",
-			new \mcustiel\config\drivers\reader\ini\Reader(),
-			new \mcustiel\config\drivers\cacher\file\php\Cacher($cacherConfig)
+			new Mcustiel\Config\Drivers\Reader\ini\Reader(),
+			new Mcustiel\Config\Drivers\Cacher\file\php\Cacher($cacherConfig)
 		);
 		$init = microtime(true);
 		for ($i = 0; $i < 50000; $i++) {
@@ -90,8 +90,8 @@ class Main
 		$cacherConfig = new \stdClass();
 		$cacherConfig->path = __DIR__ . "/resources/";
 		$loader = new ConfigLoader(__DIR__ . "/resources/test.ini",
-			new \mcustiel\config\drivers\reader\ini\Reader(),
-			new \mcustiel\config\drivers\cacher\file\php\Cacher($cacherConfig)
+			new Mcustiel\Config\Drivers\Reader\ini\Reader(),
+			new Mcustiel\Config\Drivers\Cacher\file\php\Cacher($cacherConfig)
 		);
 		$init = microtime(true);
 		for ($i = 0; $i < 50000; $i++) {
@@ -105,8 +105,8 @@ class Main
 		$cacherConfig = new \stdClass();
 		$cacherConfig->path = __DIR__ . "/resources/";
 		$loader = new ConfigLoader(__DIR__ . "/resources/test.ini",
-		    new \mcustiel\config\drivers\reader\ini\Reader(),
-		    new \mcustiel\config\drivers\cacher\memcache\Cacher($cacherConfig)
+		    new Mcustiel\Config\Drivers\Reader\ini\Reader(),
+		    new Mcustiel\Config\Drivers\Cacher\memcache\Cacher($cacherConfig)
 		);
 		$init = microtime(true);
 		for ($i = 0; $i < 50000; $i++) {

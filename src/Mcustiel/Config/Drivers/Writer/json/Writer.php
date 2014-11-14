@@ -1,7 +1,7 @@
 <?php
-namespace mcustiel\config\drivers\writer\json;
+namespace Mcustiel\Config\Drivers\Writer\json;
 
-use mcustiel\config\Config;
+use Mcustiel\Config\Config;
 
 class Writer
 {
