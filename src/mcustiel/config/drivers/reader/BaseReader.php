@@ -3,6 +3,7 @@
 namespace mcustiel\config\drivers\reader;
 
 use mcustiel\config\Config;
+use mcustiel\config\ConfigReader;
 
 class BaseReader
 {

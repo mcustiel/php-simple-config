@@ -4,8 +4,20 @@ namespace mcustiel\config;
 
 class ConfigLoader
 {
+    /**
+     *
+     * @var \mcustiel\config\ConfigReader
+     */
     private $reader;
+    /**
+     *
+     * @var \mcustiel\config\Config
+     */
     private $config;
+    /**
+     *
+     * @var \mcustiel\config\ConfigCacher
+     */
     private $cacher;
     private $name;
 
@@ -34,33 +46,18 @@ class ConfigLoader
 
     private function readFromCache()
     {
-        $this->openCache();
-        $this->cacher->setName($this->name);
+        $this->cacher->open();
         $this->loadFromCache();
         if ($this->config === null) {
             $this->read();
-            $this->saveInCache();
+            $this->cacher->save($this->config);
         }
-        $this->closeCache();
-    }
-
-    private function openCache()
-    {
-         $this->cacher->open();
-    }
-
-    private function closeCache()
-    {
         $this->cacher->close();
-    }
-
-    private function saveInCache()
-    {
-        $this->cacher->save($this->config);
     }
 
     private function loadFromCache()
     {
+        $this->cacher->setName($this->name);
         $this->config = $this->cacher->load();
     }
 
