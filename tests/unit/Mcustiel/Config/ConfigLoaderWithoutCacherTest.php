@@ -42,6 +42,7 @@ class ConfigLoaderWithoutCacherTest extends \PHPUnit_Framework_TestCase
         $this->reader
             ->method('getConfig')
             ->will($this->returnValue($this->config));
-        $this->assertSame($this->config, $this->loader->load());
+        $this->loader->load();
+        $this->assertSame($this->config, $this->loader->getConfig());
     }
 }

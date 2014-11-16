@@ -24,8 +24,8 @@ class IniConfigExtender
             $array[$key] = $this->checkRecursion($val);
             $tmp = $this->checkIfKeyIsParseableAndParseIt($key, $val);
             if ($tmp !== null) {
-            	unset($array[$key]);
-            	$array = array_merge_recursive($array, $tmp);
+                unset($array[$key]);
+                $array = array_merge_recursive($array, $tmp);
             }
         }
 
@@ -42,17 +42,19 @@ class IniConfigExtender
 
     private function setArrayKeys($value, $arrKeys, $index = 0)
     {
-    	if ($index == count($arrKeys)) {
-    		return $value;
-    	}
+        if ($index == count($arrKeys)) {
+            return $value;
+        }
 
-    	return [trim($arrKeys[$index]) => $this->setArrayKeys($value, $arrKeys, $index+1)];
+        return [
+            trim($arrKeys[$index]) => $this->setArrayKeys($value, $arrKeys, $index + 1)
+        ];
     }
 
     private function checkRecursion($val)
     {
         if (is_array($val)) {
-            $val =  $this->iterateArray($val);
+            $val = $this->iterateArray($val);
         }
         return $val;
     }

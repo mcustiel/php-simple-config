@@ -16,7 +16,7 @@ class Reader extends BaseReader implements ConfigReader
 
     private function extendConfig()
     {
-	    $helper = new IniConfigExtender($this->config);
-	    $this->config = $helper->extendIniConfig();
-	}
+        $helper = new IniConfigExtender($this->config);
+        $this->config = $helper->extendIniConfig();
+    }
 }
