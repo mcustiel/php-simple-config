@@ -13,7 +13,7 @@ class Reader extends BaseReader implements ConfigReader
     {
         $this->config = json_decode(file_get_contents($filename), true);
         if ($this->config == null) {
-            throw new ConfigParsingException();
+            throw new ConfigParsingException("Error parsing json configuration from {$filename}");
         }
     }
 }

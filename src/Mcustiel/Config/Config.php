@@ -7,7 +7,6 @@ use Mcustiel\Config\Exception\ConfigKeyDoesNotExistException;
 class Config
 {
     protected $config;
-    protected $converter;
 
     public function __construct(array $config)
     {

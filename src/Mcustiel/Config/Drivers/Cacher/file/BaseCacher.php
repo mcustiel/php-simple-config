@@ -48,17 +48,28 @@ abstract class BaseCacher implements ConfigCacher
 
     public function save(Config $config)
     {
+        $this->createDir(dirname($this->fullPath));
         file_put_contents($this->fullPath, $this->getSerializedConfig($config->getFullConfigAsArray()));
     }
 
     public function load()
     {
-        $return = $this->getUnserializedConfig();
-        if ($return != null) {
-            $return = new Config($return);
-        }
+        if (file_exists($this->fullPath)) {
+            $return = $this->getUnserializedConfig();
+            if ($return != null) {
+                $return = new Config($return);
+            }
 
-        return $return;
+            return $return;
+        }
+        return null;
+    }
+
+    private function createDir($path)
+    {
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
     }
 
     abstract protected function generateFilePath();
