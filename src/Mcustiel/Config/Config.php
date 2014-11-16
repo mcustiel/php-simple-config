@@ -2,10 +2,12 @@
 namespace Mcustiel\Config;
 
 use Mcustiel\Config\Util\ObjectArrayConverter;
+use Mcustiel\Config\Exception\ConfigKeyDoesNotExistException;
 
-abstract class Config
+class Config
 {
     protected $config;
+    protected $converter;
 
     public function __construct(array $config)
     {
@@ -22,5 +24,19 @@ abstract class Config
         return ObjectArrayConverter::arrayToObject($this->config);
     }
 
-    abstract public function get($keyName);
+    public function set($keyName, $value)
+    {
+        $this->config[$keyName] = $value;
+    }
+
+    public function get($keyName)
+    {
+        if (isset($this->config[$keyName])) {
+            if (is_array($this->config[$keyName])) {
+                $this->config[$keyName] = new self($this->config[$keyName]);
+            }
+            return $this->config[$keyName];
+        }
+        throw new ConfigKeyDoesNotExistException("The key {$keyName} does not exist in config");
+    }
 }

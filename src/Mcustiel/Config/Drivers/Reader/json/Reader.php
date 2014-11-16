@@ -5,6 +5,7 @@ use Mcustiel\Config\ConfigReader;
 use Mcustiel\Config\Config;
 use Mcustiel\Config\Drivers\Reader\BaseReader;
 use Mcustiel\Config\Exception\ConfigException;
+use Mcustiel\Config\Exception\ConfigParsingException;
 
 class Reader extends BaseReader implements ConfigReader
 {
@@ -12,7 +13,7 @@ class Reader extends BaseReader implements ConfigReader
     {
         $this->config = json_decode(file_get_contents($filename), true);
         if ($this->config == null) {
-            throw new ConfigException(ConfigException::EXCEPTION_ERROR_PARSING_CONFIG);
+            throw new ConfigParsingException();
         }
     }
 }
