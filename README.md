@@ -87,6 +87,29 @@ $config->get('PRODUCTION'); // Will return a $config object to access the subkey
 $config->get('PRODUCTION')->get('DB')->get('user'); // Will return 'root'
 ```
 
+####Caching the config
+php-simple-config allows the developer to create a cached version of the configuration to open and parse it faster. To
+do this you must provide the ConfigLoader with a Cacher object as shown in following code block:
+```PHP
+use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
+use Mcustiel\Config\Drivers\Cacher\file\php\Cacher as FilePhpCacher;
+
+$cacherConfig = new \stdClass();
+$cacherConfig->path = '/path/to/cache/dir/';
+
+$loader = new ConfigLoader("/test.ini",
+    new IniReader(),
+    new FilePhpCacher($cacherConfig)
+);
+// If the file is already cached, then next sentence loads it from cache; otherwise it's loaded
+// from original config file and then saved in the cached version.
+$config = $loader->load();
+```
+
+> *NOTE*
+> Currently are three types of cache to show abstracion works in php-simple-cache but I think
+> the only one that can be optimally used as a config cacher is file/php/Cacher. 
+
 ###Writing configuration
 To write the configuration to a file you need a Writer object: 
 ```php
@@ -161,4 +184,4 @@ DB.host = localhost
 ``` 
 
 ###Examples:
-There's not unit tests yet but you cant see the test/testrun.php script to see this project working.
+In the unit and functional tests you can see examples of php-simple-config use.
