@@ -51,8 +51,8 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Mcustiel\Config\Exception\ConfigException
-     * @expectedExceptionMessage The selected key does not exist
+     * @expectedException Mcustiel\Config\Exception\ConfigKeyDoesNotExistException
+     * @expectedExceptionMessage The key potato does not exist in config
      */
     public function testGetWithNonExistentKey()
     {
@@ -82,13 +82,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testSetValueMultilevel()
     {
-        $this->markTestIncomplete(
-            'I have to decide if this is something to leave as'
-            + ' it is or I will change design to support it'
-        );
-        var_export($this->config->get('db'));
         $this->config->get('db')->set('name', 'anotherName');
-        var_export($this->config->get('db'));
         $this->assertEquals('anotherName', $this->config->get('db')->get('name'));
     }
 
