@@ -11,6 +11,7 @@
 		}
 	},
 	"name" : "mcustiel/php-simple-config",
+    "version": "0.5",
 	"type" : "library",
 	"description" : "A simple library to manage configuration files in different formats",
 	"license" : "GPL-2.0+",
@@ -22,7 +23,7 @@
 		"phing/phing" : "2.*",
 		"squizlabs/php_codesniffer" : "1.*",
 		"phpmd/phpmd" : "@stable",
-		"sebastian/phpcpd": "1.4.3"
+		"sebastian/phpcpd" : "1.4.3"
 	},
-	"minimum-stability" : "dev"
+	"minimum-stability" : "stable"
 }
