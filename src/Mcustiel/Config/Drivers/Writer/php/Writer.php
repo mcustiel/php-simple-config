@@ -14,6 +14,6 @@ class Writer
 
     public function write($filename)
     {
-        file_put_contents($filename, "<?php\n\$config = " . var_export($this->config, true) . ';' . PHP_EOL);
+        file_put_contents($filename, '<?php' . PHP_EOL . 'return' . var_export($this->config, true) . ';' . PHP_EOL);
     }
 }

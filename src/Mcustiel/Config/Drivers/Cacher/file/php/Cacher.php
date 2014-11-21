@@ -7,13 +7,13 @@ class Cacher extends BaseCacher
 {
     protected function getSerializedConfig(array $config)
     {
-        return "<?php\n\$config = " . var_export($config, true) . ';' . PHP_EOL;
+        return '<?php' . PHP_EOL . '$config = ' . var_export($config, true) . ';' . PHP_EOL;
     }
 
     protected function getUnserializedConfig()
     {
-        @include $this->fullPath;
-        return isset($config)? $config : null;
+        $config = @include $this->fullPath;
+        return is_array($config)? $config : null;
     }
 
     protected function generateFilePath()

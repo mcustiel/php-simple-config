@@ -9,7 +9,6 @@ class Reader extends BaseReader implements ConfigReader
 {
     public function read($filename)
     {
-        include_once $filename;
-        $this->config = $config;
+        $this->config = @include $filename;
     }
 }

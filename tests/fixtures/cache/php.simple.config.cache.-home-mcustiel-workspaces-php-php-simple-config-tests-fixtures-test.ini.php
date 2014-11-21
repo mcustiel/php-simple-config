@@ -1,5 +1,5 @@
 <?php
-$config = array (
+return array (
   'b' => 'notAnArray',
   'c' => 'alsoNotAnArray',
   'PRODUCTION' => 
