@@ -40,6 +40,9 @@ class WriterTest extends BaseFunctional
 
     public function testPhpWriter()
     {
+	if (file_exists(FIXTURES_PATH . '/test-written.php')) {
+		unlink(FIXTURES_PATH . '/test-written.php');
+	}
         $writer = new PhpWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . '/test-written.php');
         $this->assertTrue(file_exists(FIXTURES_PATH . '/test-written.php'));
@@ -50,6 +53,9 @@ class WriterTest extends BaseFunctional
 
     public function testJsonWriter()
     {
+	if (file_exists(FIXTURES_PATH . '/test-written.json')) {
+                unlink(FIXTURES_PATH . '/test-written.json');
+        }
         $writer = new JsonWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . '/test-written.json');
         $this->assertTrue(file_exists(FIXTURES_PATH . '/test-written.json'));
@@ -60,6 +66,9 @@ class WriterTest extends BaseFunctional
 
     public function testIniWriter()
     {
+	if (file_exists(FIXTURES_PATH . '/test-written.ini')) {
+                unlink(FIXTURES_PATH . '/test-written.ini');
+        }
         $writer = new IniWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . "/test-written.ini");
         $this->assertTrue(file_exists(FIXTURES_PATH . '/test-written.ini'));

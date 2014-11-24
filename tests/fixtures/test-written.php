@@ -1,5 +1,5 @@
 <?php
-$config = array (
+returnarray (
   'PRODUCTION' => 
   array (
     'DB' => 

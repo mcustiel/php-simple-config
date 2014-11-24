@@ -10,5 +10,8 @@
 		<const name="TEST_MEMCACHE_CACHER" value="0" />
 		<const name="MEMCACHE_HOST" value="localhost" />
 		<const name="MEMCACHE_PORT" value="11211" />
+		<ini name="display_startup_errors" value="1" />
+		<ini name="display_errors" value="1" />
+		<ini name="error_reporting" value="E_ALL" />
 	</php>
 </phpunit>

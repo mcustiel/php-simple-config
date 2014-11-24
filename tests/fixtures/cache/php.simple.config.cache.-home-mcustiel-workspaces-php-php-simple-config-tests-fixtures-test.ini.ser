@@ -1,1 +1,0 @@
-a:4:{s:1:"b";s:10:"notAnArray";s:1:"c";s:14:"alsoNotAnArray";s:10:"PRODUCTION";a:1:{s:2:"DB";a:3:{s:4:"user";s:4:"root";s:4:"pass";s:4:"root";s:4:"host";s:9:"localhost";}}s:1:"a";a:1:{s:8:"property";a:2:{i:0;s:5:"value";s:6:"deeper";s:11:"deeperValue";}}}

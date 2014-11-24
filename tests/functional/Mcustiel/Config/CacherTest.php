@@ -19,6 +19,11 @@ class CacherTest extends BaseFunctional
         $this->cacherConfig->path = FIXTURES_PATH . "/cache/";
         $this->cacherConfig->host = MEMCACHE_HOST;
         $this->cacherConfig->port = MEMCACHE_PORT;
+	foreach (scandir($this->cacherConfig->path) as $file) {
+		if (!is_dir($this->cacherConfig->path . $file)) {
+			unlink($this->cacherConfig->path . $file);
+		}
+	}
     }
 
     public function testReaderWithPhpCache()
