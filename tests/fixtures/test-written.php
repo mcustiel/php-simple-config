@@ -1,5 +1,5 @@
 <?php
-returnarray (
+return array (
   'PRODUCTION' => 
   array (
     'DB' => 

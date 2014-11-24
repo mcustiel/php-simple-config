@@ -40,13 +40,12 @@ class WriterTest extends BaseFunctional
 
     public function testPhpWriter()
     {
-	if (file_exists(FIXTURES_PATH . '/test-written.php')) {
-		unlink(FIXTURES_PATH . '/test-written.php');
-	}
+        if (file_exists(FIXTURES_PATH . '/test-written.php')) {
+	    unlink(FIXTURES_PATH . '/test-written.php');
+        }
         $writer = new PhpWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . '/test-written.php');
         $this->assertTrue(file_exists(FIXTURES_PATH . '/test-written.php'));
-
         $config = $this->loadPhpConfig('/test-written.php');
         $this->checkGeneratedConfigIsCorrect($config);
     }
