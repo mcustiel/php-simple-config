@@ -15,7 +15,17 @@ class Config
 
     public function getFullConfigAsArray()
     {
-        return $this->config;
+        $return = [];
+        foreach ($this->config as $key => $value) {
+            $return[$key] = $this->getConfigValue($value);
+        }
+        return $return;
+    }
+
+    private function getConfigValue($value)
+    {
+        return is_object($value) && $value instanceof self ?
+            $value->getFullConfigAsArray() : $value;
     }
 
     public function getFullConfigAsObject()

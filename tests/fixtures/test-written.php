@@ -4,7 +4,7 @@ return array (
   array (
     'DB' => 
     array (
-      'user' => 'root',
+      'user' => 'user',
       'pass' => 'root',
       'host' => 'localhost',
     ),

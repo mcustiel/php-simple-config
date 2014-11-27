@@ -43,10 +43,10 @@ How to use it?
 
 ###Reading configuration
 
-First you have to create a configuration file, in this example it is a PHP file. If the format is PHP you must define a variable named $config containing an array with the configuration, for JSON or INI you don't need any special convention:
+First you have to create a configuration file, in this example it is a PHP file. If the format is PHP you must define a variable containing an array with the configuration and return it, for JSON or INI you don't need any special convention:
 ```php
 <?php 
-$config = array(
+return array(
 	'PRODUCTION' => array(
 	    'DB' => array(
 	        'user' => 'root',
@@ -70,7 +70,15 @@ $config = array(
 	),
 );
 ```
-
+or, if you prefer it:
+```php
+<?php 
+$config['PRODUCTION']['DB']['user'] = 'root';
+$config['PRODUCTION']['DB']['pass'] = 'root';
+$config['PRODUCTION']['DB']['host'] = 'localhost';
+// ...
+return $config
+```
 Then you can access the config from your code using a Reader object:
 ```php
 $reader = new Mcustiel\Config\Drivers\Reader\php\Reader();

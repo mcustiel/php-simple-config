@@ -19,29 +19,30 @@ class WriterTest extends BaseFunctional
 
     public function setUp()
     {
-        $this->configToWrite = new Config([
-            'PRODUCTION' => [
-                'DB' => [
-                    'user' => 'root',
-                    'pass' => 'root',
-                    'host' => 'localhost',
+        $this->configToWrite = new Config(
+            [
+                'PRODUCTION' => [
+                    'DB' => [
+                        'user' => 'root',
+                        'pass' => 'root',
+                        'host' => 'localhost'
+                    ]
                 ],
-            ],
-            'b' => 'notAnArray',
-            'c' => 'alsoNotAnArray',
-            'a' => [
-                'property' => [
-                    0 => 'value',
-                    'deeper' => 'deeperValue',
-                ],
-            ],
-        ]);
+                'b' => 'notAnArray',
+                'c' => 'alsoNotAnArray',
+                'a' => [
+                    'property' => [
+                        0 => 'value',
+                        'deeper' => 'deeperValue'
+                    ]
+                ]
+            ]);
     }
 
     public function testPhpWriter()
     {
         if (file_exists(FIXTURES_PATH . '/test-written.php')) {
-	    unlink(FIXTURES_PATH . '/test-written.php');
+            unlink(FIXTURES_PATH . '/test-written.php');
         }
         $writer = new PhpWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . '/test-written.php');
@@ -52,8 +53,8 @@ class WriterTest extends BaseFunctional
 
     public function testJsonWriter()
     {
-	if (file_exists(FIXTURES_PATH . '/test-written.json')) {
-                unlink(FIXTURES_PATH . '/test-written.json');
+        if (file_exists(FIXTURES_PATH . '/test-written.json')) {
+            unlink(FIXTURES_PATH . '/test-written.json');
         }
         $writer = new JsonWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . '/test-written.json');
@@ -65,8 +66,8 @@ class WriterTest extends BaseFunctional
 
     public function testIniWriter()
     {
-	if (file_exists(FIXTURES_PATH . '/test-written.ini')) {
-                unlink(FIXTURES_PATH . '/test-written.ini');
+        if (file_exists(FIXTURES_PATH . '/test-written.ini')) {
+            unlink(FIXTURES_PATH . '/test-written.ini');
         }
         $writer = new IniWriter($this->configToWrite);
         $writer->write(FIXTURES_PATH . "/test-written.ini");
@@ -74,5 +75,34 @@ class WriterTest extends BaseFunctional
 
         $config = $this->loadIniConfig('/test-written.ini');
         $this->checkGeneratedConfigIsCorrect($config);
+    }
+
+    public function testWriteAfterModifyingRecursively()
+    {
+        if (file_exists(FIXTURES_PATH . '/test-written.php')) {
+            unlink(FIXTURES_PATH . '/test-written.php');
+        }
+        $this->configToWrite->get('PRODUCTION')->get('DB')->set('user', 'user');
+        $writer = new PhpWriter($this->configToWrite);
+        $writer->write(FIXTURES_PATH . '/test-written.php');
+        $this->assertTrue(file_exists(FIXTURES_PATH . '/test-written.php'));
+        $config = $this->loadPhpConfig('/test-written.php');
+
+        $this->assertEquals('notAnArray', $config->get('b'));
+        $this->assertEquals('alsoNotAnArray', $config->get('c'));
+        $this->assertEquals('value', $config->get('a')
+            ->get('property')->get(0));
+        $this->assertEquals('deeperValue', $config->get('a')
+            ->get('property')
+            ->get('deeper'));
+        $this->assertEquals('user', $config->get('PRODUCTION')
+            ->get('DB')
+            ->get('user'));
+        $this->assertEquals('root', $config->get('PRODUCTION')
+            ->get('DB')
+            ->get('pass'));
+        $this->assertEquals('localhost', $config->get('PRODUCTION')
+            ->get('DB')
+            ->get('host'));
     }
 }
