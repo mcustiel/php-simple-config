@@ -5,20 +5,24 @@ namespace Mcustiel\Config;
 class ConfigLoader
 {
     /**
-     *
+     * The reader object used to read and parse the file.
      * @var Mcustiel\Config\ConfigReader
      */
     private $reader;
     /**
-     *
+     * The config object that resulted from parsing the file.
      * @var Mcustiel\Config\Config
      */
     private $config;
     /**
-     *
+     * The cacher object used to cache the configuration.
      * @var Mcustiel\Config\ConfigCacher
      */
     private $cacher;
+    /**
+     * The path to the file that contains the config to parse.
+     * @var string
+     */
     private $name;
 
     public function __construct($fileName, ConfigReader $reader, ConfigCacher $cacher = null)
@@ -28,6 +32,11 @@ class ConfigLoader
         $this->cacher = $cacher;
     }
 
+    /**
+     * Loads the configuration from the file and parses it.
+     *
+     * @return \Mcustiel\Config\Mcustiel\Config\Config The resulting Config object.
+     */
     public function load()
     {
         if ($this->cacher !== null) {
@@ -39,6 +48,11 @@ class ConfigLoader
         return $this->config;
     }
 
+    /**
+     * Gets the Config object obtained from parsing the config file.
+     *
+     * @return \Mcustiel\Config\Mcustiel\Config\Config
+     */
     public function getConfig()
     {
         return $this->config;

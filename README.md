@@ -77,7 +77,7 @@ $config['PRODUCTION']['DB']['user'] = 'root';
 $config['PRODUCTION']['DB']['pass'] = 'root';
 $config['PRODUCTION']['DB']['host'] = 'localhost';
 // ...
-return $config
+return $config;
 ```
 Then you can access the config from your code using a Reader object:
 ```php

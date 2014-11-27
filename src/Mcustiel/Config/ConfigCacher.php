@@ -1,6 +1,11 @@
 <?php
 namespace Mcustiel\Config;
 
+/**
+ * ConfigCacher interface. It defines the methods that
+ * a Config cacher should implement.
+ * @author mcustiel
+ */
 interface ConfigCacher
 {
     public function open();

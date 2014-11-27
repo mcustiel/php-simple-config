@@ -12,6 +12,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
      * @var Mcustiel\Config\Config
      */
     private $config;
+    private $converter;
 
     public function setUp()
     {
@@ -25,24 +26,18 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             ],
             'isolated' => 'value',
         ];
+        $this->converter = $this->getMock('Mcustiel\Config\Util\RawConfigToArrayConverter');
         $this->config = new Config($this->configArray);
+        $this->config->setConverter($this->converter);
     }
 
     public function testGetFullConfigAsArray()
     {
+        $this->converter
+            ->method('convert')
+            ->with($this->configArray)
+            ->will($this->returnValue($this->configArray));
         $this->assertEquals($this->configArray, $this->config->getFullConfigAsArray());
-    }
-
-    public function testGetFullConfigAsObject()
-    {
-        $config = new \stdClass();
-        $config->db = new \stdClass();
-        $config->db->auth = new \stdClass;
-        $config->db->auth->user = 'user';
-        $config->db->auth->pass = 'pass';
-        $config->db->name = 'dbName';
-        $config->isolated = 'value';
-        $this->assertEquals($config, $this->config->getFullConfigAsObject());
     }
 
     public function testGetWithScalarValue()
@@ -63,13 +58,15 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     {
         $db = $this->config->get('db');
         $this->assertInstanceOf('\Mcustiel\\config\\Config', $db);
-        $this->assertEquals($this->configArray['db'], $db->getFullConfigAsArray());
+        $this->converter
+            ->method('convert')
+            ->will($this->returnValue(['key' => 'value']));
+        $db->setConverter($this->converter);
+        $this->assertEquals(['key' => 'value'], $db->getFullConfigAsArray());
     }
 
     public function testGetWithConfigValueMultiLevel()
     {
-        $this->assertEquals($this->configArray['db']['auth'],
-            $this->config->get('db')->get('auth')->getFullConfigAsArray());
         $this->assertEquals($this->configArray['db']['auth']['user'],
             $this->config->get('db')->get('auth')->get('user'));
     }
