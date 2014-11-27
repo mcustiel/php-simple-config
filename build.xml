@@ -59,10 +59,20 @@
 	</target>
 
 	<!-- ============================================ -->
-	<!-- Target: tests (run all tests) -->
+	<!-- Target: tests (PHPUnit tests) -->
 	<!-- ============================================ -->
 	<target name="tests">
-		<phingcall target="unittests" />
+		<echo msg="Running PhpUnit tests..." />
+		<exec command="./vendor/bin/phpunit -d zend.enable_gc=0 --log-junit ${dir.reports}/phpunit/phpunit.xml --coverage-clover ${dir.reports.coverage}/clover.xml --coverage-html ${dir.reports.coverage}/ --testdox-html ${dir.reports}/phpunit/testdox.html -c ${dir.tests}" outputProperty="output" returnProperty="returnout" />
+		<echo msg="${output}" />
+		<if>
+			<not>
+				<equals arg1="${returnout}" arg2="0" />
+			</not>
+			<then>
+				<fail msg="Failures occurred in unit tests." />
+			</then>
+		</if>
 	</target>
 
 	<!-- ============================================ -->
@@ -70,8 +80,7 @@
 	<!-- ============================================ -->
 	<target name="codestyle">
 		<echo msg="Running code sniffer to check zend standard..." />
-		<phpcodesniffer standard="PSR2" showSniffs="true"
-			showWarnings="true" verbosity="0" encoding="UTF-8">
+		<phpcodesniffer standard="PSR2" showSniffs="true" showWarnings="true" verbosity="0" encoding="UTF-8">
 			<fileset refid="sources" />
 			<formatter type="full" outfile="${dir.reports}/reportcs.txt" />
 			<formatter type="checkstyle" outfile="${dir.reports}/checkstylecs.xml" />
@@ -88,7 +97,7 @@
 			<formatter type="xml" outfile="${dir.reports}/pmd.xml" />
 		</phpmd>
 	</target>
-	
+
 	<!-- ============================================ -->
 	<!-- Target: copypaste (detects copy/paste in code) -->
 	<!-- ============================================ -->
@@ -108,24 +117,5 @@
 		<phploc reportType="csv" reportName="phploc" reportDirectory="${dir.reports}">
 			<fileset refid="sources" />
 		</phploc>
-	</target>
-
-	<!-- ============================================ -->
-	<!-- Target: unittests (unit testing) -->
-	<!-- ============================================ -->
-	<target name="unittests">
-		<echo msg="Running unit tests..." />
-		<exec
-			command="./vendor/bin/phpunit -d zend.enable_gc=0 --log-junit ${dir.reports}/phpunit/phpunit.xml --coverage-clover ${dir.reports.coverage}/clover.xml --coverage-html ${dir.reports.coverage}/ --testdox-html ${dir.reports}/phpunit/testdox.html -c ${dir.tests}"
-			outputProperty="output" returnProperty="returnout" />
-		<echo msg="${output}" />
-		<if>
-			<not>
-				<equals arg1="${returnout}" arg2="0" />
-			</not>
-			<then>
-				<fail msg="Failures occurred in unit tests." />
-			</then>
-		</if>
 	</target>
 </project>
