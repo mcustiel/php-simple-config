@@ -6,3 +6,4 @@ composer.lock
 /vendor/
 /bin/
 /build/
+test-written.*
