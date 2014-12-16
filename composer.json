@@ -24,9 +24,9 @@
 		}
 	},
 	"name" : "mcustiel/php-simple-config",
-	"version" : "1.0.1",
+	"version" : "1.1.0",
 	"type" : "library",
-	"description" : "A simple library to manage configuration files in different formats.",
+	"description" : "A simple library to manage configuration files in different formats and cache them.",
 	"license" : "GPL-3.0+",
 	"require" : {
 		"php" : ">=5.5",
