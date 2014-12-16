@@ -15,25 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with php-simple-config.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Mcustiel\Config\Drivers\Cacher\file\php;
+namespace Mcustiel\Config;
 
-use Mcustiel\Config\Drivers\Cacher\file\BaseCacher;
+use Mcustiel\Config\Config;
 
-class Cacher extends BaseCacher
+class Cacher
 {
+    private $fullPath;
+
+    public function __construct($path, $name)
+    {
+        $this->fullPath = $path . $name . '.php';
+    }
+
     protected function getSerializedConfig(array $config)
     {
         return '<?php' . PHP_EOL . 'return ' . var_export($config, true) . ';' . PHP_EOL;
     }
 
-    protected function getUnserializedConfig()
+    public function getCachedConfig()
     {
         $config = @include $this->fullPath;
-        return is_array($config) ? $config : null;
+        return is_array($config) ? new Config($config) : null;
     }
 
-    protected function generateFilePath()
+    public function cacheConfig(Config $config)
     {
-        return "{$this->path}/php.simple.config.cache.{$this->cacheName}.php";
+        file_put_contents(
+            $this->fullPath,
+            $this->getSerializedConfig($config->getFullConfigAsArray())
+        );
     }
 }

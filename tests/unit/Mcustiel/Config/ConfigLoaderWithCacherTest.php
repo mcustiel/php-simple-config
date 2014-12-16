@@ -32,7 +32,7 @@ class ConfigLoaderWithCacherTest extends \PHPUnit_Framework_TestCase
         $this->reader = $this->getMockBuilder('\Mcustiel\\Config\\ConfigReader')
             ->disableOriginalConstructor()
             ->getMOck();
-        $this->cacher = $this->getMockBuilder('\Mcustiel\\Config\\ConfigCacher')
+        $this->cacher = $this->getMockBuilder('\Mcustiel\\Config\\Cacher')
             ->disableOriginalConstructor()
             ->getMOck();
         $this->config = $this->getMockBuilder('\Mcustiel\\Config\\Config')
@@ -56,7 +56,7 @@ class ConfigLoaderWithCacherTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->config));
         $this->cacher
             ->expects($this->once())
-            ->method('save')
+            ->method('cacheConfig')
             ->will($this->returnValue($this->config));
         $this->reader
             ->method('getConfig')
@@ -68,17 +68,7 @@ class ConfigLoaderWithCacherTest extends \PHPUnit_Framework_TestCase
     {
         $this->cacher
             ->expects($this->once())
-            ->method('open');
-        $this->cacher
-            ->expects($this->once())
-            ->method('setName')
-            ->with($this->equalTo(self::CONFIG_FILE));
-        $this->cacher
-            ->expects($this->once())
-            ->method('close');
-        $this->cacher
-            ->expects($this->once())
-            ->method('load')
+            ->method('getCachedConfig')
             ->will($this->returnValue($value));
     }
 }
