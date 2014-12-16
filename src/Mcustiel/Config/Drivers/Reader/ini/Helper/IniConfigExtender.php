@@ -1,17 +1,17 @@
 <?php
 /**
  * This file is part of php-simple-config.
- * 
+ *
  * php-simple-config is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * php-simple-config is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with php-simple-config.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -48,14 +48,6 @@ class IniConfigExtender
         return $array;
     }
 
-    private function extendKeyWithSeparator($key, $val, $separator)
-    {
-        $tmpKey = explode($separator, $key);
-        $tmp = $this->setArrayKeys($val, $tmpKey);
-
-        return $tmp;
-    }
-
     private function setArrayKeys($value, $arrKeys, $index = 0)
     {
         if ($index == count($arrKeys)) {
@@ -79,9 +71,8 @@ class IniConfigExtender
     {
         $tmp = null;
         if (strpos($key, self::KEY_SEPARATOR) !== false) {
-            $tmp = $this->extendKeyWithSeparator($key, $val, self::KEY_SEPARATOR);
-        } elseif (strpos($key, self::SECTION_SEPARATOR) !== false) {
-            $tmp = $this->extendKeyWithSeparator($key, $val, self::SECTION_SEPARATOR);
+            $tmpKey = explode(self::KEY_SEPARATOR, $key);
+            $tmp = $this->setArrayKeys($val, $tmpKey);
         }
 
         return $tmp;
