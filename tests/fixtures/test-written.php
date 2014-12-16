@@ -1,8 +1,8 @@
 <?php
 return array (
-  'PRODUCTION' =>
+  'PRODUCTION' => 
   array (
-    'DB' =>
+    'DB' => 
     array (
       'user' => 'user',
       'pass' => 'root',
@@ -11,9 +11,9 @@ return array (
   ),
   'b' => 'notAnArray',
   'c' => 'alsoNotAnArray',
-  'a' =>
+  'a' => 
   array (
-    'property' =>
+    'property' => 
     array (
       0 => 'value',
       'deeper' => 'deeperValue',

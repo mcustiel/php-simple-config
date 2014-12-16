@@ -5,6 +5,7 @@ use Mcustiel\Config\Config;
 use Mcustiel\Config\Drivers\Reader\php\Reader as PhpReader;
 use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
 use Mcustiel\Config\Drivers\Reader\json\Reader as JsonReader;
+use Mcustiel\Config\Drivers\Reader\yaml\Reader as YamlReader;
 
 abstract class BaseFunctional extends \PHPUnit_Framework_TestCase
 {
@@ -31,6 +32,15 @@ abstract class BaseFunctional extends \PHPUnit_Framework_TestCase
     protected function loadJsonConfig($file)
     {
         $reader = new JsonReader();
+        $reader->read(FIXTURES_PATH . $file);
+        $config = $reader->getConfig();
+
+        return $config;
+    }
+
+    protected function loadYamlConfig($file)
+    {
+        $reader = new YamlReader();
         $reader->read(FIXTURES_PATH . $file);
         $config = $reader->getConfig();
 

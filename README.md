@@ -10,13 +10,11 @@ php-simple-config uses a minimalistic approach and supports different types of c
 * PHP files (containing a config array).
 * INI files
 * JSON files
+* YAML files
 
 The component can read and write these configuration formats.
 
-Also, it allows the developer to cache the configurations to increase the performance when accessing to it. This functionality is experimental (currently testing the increment in performance) but can be used, the types of cache supported are:
-* PHP file
-* serialized file
-* memcached
+Also, it allows the developer to cache the configurations to increase the performance when accessing to it. Currently just one configuration cacher is supported: **PHP file**. This cacher saves the parsed configuration in a .php file as a PHP array.
 
 Installation
 ------------
@@ -124,7 +122,7 @@ $writer = new Mcustiel\Config\Drivers\Writer\ini\Writer($iniConfig);
 $writer->write(__DIR__ . "/resources/test-written.ini");
 ```
 > *NOTE*
-> When writing using ini format, the library does not guarantee that 
+> When writing using ini or yaml format, the library does not guarantee that 
 > the original format and item order is kept. But the file is still
 > parseable
 

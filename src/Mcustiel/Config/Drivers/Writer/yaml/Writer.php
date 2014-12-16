@@ -15,22 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with php-simple-config.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Mcustiel\Config\Drivers\Writer\php;
+namespace Mcustiel\Config\Drivers\Writer\yaml;
 
 use Mcustiel\Config\Config;
 use Mcustiel\Config\Exception\ConfigWritingException;
+use Symfony\Component\Yaml\Yaml;
 use Mcustiel\Config\Drivers\Writer\Writer as BaseWriter;
 
 class Writer extends BaseWriter
 {
     public function write($filename)
     {
-        if (file_put_contents(
-            $filename,
-            '<?php' . PHP_EOL . 'return ' . var_export($this->getConfig(), true) . ';' . PHP_EOL
-        ) === false) {
+        if (@file_put_contents($filename, Yaml::dump($this->getConfig(), 4, 2)) === false) {
             throw new ConfigWritingException(
-                "An error occurred while writing config to {$filename} in php format"
+                "An error occurred while writing config to {$filename} in yaml format"
             );
         }
     }

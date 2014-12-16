@@ -15,25 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with php-simple-config.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Mcustiel\Config\Drivers\Cacher\file\serialize;
-
-use Mcustiel\Config\Drivers\Cacher\file\BaseCacher;
-
-class Cacher extends BaseCacher
-{
-    protected function getSerializedConfig(array $config)
-    {
-        return serialize($config);
-    }
-
-    protected function getUnserializedConfig()
-    {
-        $return = file_get_contents($this->fullPath);
-        return ($return === false)? null : unserialize($return);
-    }
-
-    protected function generateFilePath()
-    {
-        return "{$this->path}/php.simple.config.cache.{$this->cacheName}.ser";
-    }
-}
+return array (
+  'b' => 'notAnArray',
+  'c' => 'alsoNotAnArray',
+  'PRODUCTION' => 
+  array (
+    'DB' => 
+    array (
+      'user' => 'root',
+      'pass' => 'root',
+      'host' => 'localhost',
+    ),
+  ),
+  'a' => 
+  array (
+    'property' => 
+    array (
+      0 => 'value',
+      'deeper' => 'deeperValue',
+    ),
+  ),
+);

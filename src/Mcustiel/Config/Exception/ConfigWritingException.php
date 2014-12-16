@@ -15,23 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with php-simple-config.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Mcustiel\Config\Drivers\Writer\php;
+namespace Mcustiel\Config\Exception;
 
-use Mcustiel\Config\Config;
-use Mcustiel\Config\Exception\ConfigWritingException;
-use Mcustiel\Config\Drivers\Writer\Writer as BaseWriter;
-
-class Writer extends BaseWriter
+/**
+ * Exception to be thrown when config file can't be parsed.
+ *
+ * @author mcustiel
+ */
+class ConfigWritingException extends ConfigException
 {
-    public function write($filename)
+    public function __construct($message)
     {
-        if (file_put_contents(
-            $filename,
-            '<?php' . PHP_EOL . 'return ' . var_export($this->getConfig(), true) . ';' . PHP_EOL
-        ) === false) {
-            throw new ConfigWritingException(
-                "An error occurred while writing config to {$filename} in php format"
-            );
-        }
+        parent::__construct($message);
     }
 }

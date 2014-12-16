@@ -1,18 +1,23 @@
 {
 	"keywords" : [
 		"config",
+		"configuration",
 		"manager",
 		"multiformat",
-		"abstraction"
+		"abstraction",
+		"yaml",
+		"ini",
+		"json",
+		"include",
+		"cache"
 	],
-	"authors": [
-	        {
-	            "name": "Mariano Custiel",
-	            "email": "jmcustiel@gmail.com",
-	            "homepage": "https://github.com/mcustiel",
-	            "role": "Developer"
-	        }
-	    ],
+	"authors" : [{
+			"name" : "Mariano Custiel",
+			"email" : "jmcustiel@gmail.com",
+			"homepage" : "https://github.com/mcustiel",
+			"role" : "Developer"
+		}
+	],
 	"autoload" : {
 		"psr-4" : {
 			"Mcustiel\\Config\\" : "src"
@@ -21,10 +26,11 @@
 	"name" : "mcustiel/php-simple-config",
 	"version" : "1.0.1",
 	"type" : "library",
-	"description" : "A simple library to manage configuration files in different formats",
+	"description" : "A simple library to manage configuration files in different formats.",
 	"license" : "GPL-3.0+",
 	"require" : {
-		"php" : ">=5.5"
+		"php" : ">=5.5",
+		"symfony/yaml" : "2.*"
 	},
 	"require-dev" : {
 		"phpunit/phpunit" : "4.3.*",

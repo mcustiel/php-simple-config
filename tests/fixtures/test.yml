@@ -1,0 +1,12 @@
+b : notAnArray
+c : alsoNotAnArray
+a:
+  property: 
+    0: value
+    deeper: deeperValue
+
+PRODUCTION:
+  DB:
+    user: root
+    pass: root
+    host: localhost
