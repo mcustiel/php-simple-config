@@ -91,6 +91,13 @@ $reader = new Mcustiel\Config\Drivers\Reader\php\Reader();
 $reader->read(__DIR__ . "/resources/test.php");
 $config = $reader->getConfig();
 ```
+or use the Loader class supplied by the library:
+```PHP
+use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
+
+$loader = new ConfigLoader("/test.ini", new IniReader());
+$config = $loader->load();
+```
 
 ###Accessing configuration
 The config object allows you to access the information in the configuration file:
