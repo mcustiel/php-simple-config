@@ -32,4 +32,11 @@ abstract class Writer
     {
         return $this->config;
     }
+
+    /**
+     * Writes the config to a file.
+     *
+     * @param unknown $filename The name of the file where the config must be saved.
+     */
+    abstract public function write($filename);
 }

@@ -19,6 +19,11 @@ namespace Mcustiel\Config;
 
 use Mcustiel\Config\Config;
 
+/**
+ * Class used to read and write Configs from and to a PHP cache file.
+ *
+ * @author mcustiel
+ */
 class Cacher
 {
     private $fullPath;
@@ -33,12 +38,22 @@ class Cacher
         return '<?php' . PHP_EOL . 'return ' . var_export($config, true) . ';' . PHP_EOL;
     }
 
+    /**
+     * Loads a config from a cache file.
+     *
+     * @return NULL|\Mcustiel\Config\Config The cached config if it exists, null otherwise.
+     */
     public function getCachedConfig()
     {
         $config = @include $this->fullPath;
         return is_array($config) ? new Config($config) : null;
     }
 
+    /**
+     * Writes the config to a PHP cache file.
+     *
+     * @param Mcustiel\Config\Config $config The config to write to cache.
+     */
     public function cacheConfig(Config $config)
     {
         file_put_contents(

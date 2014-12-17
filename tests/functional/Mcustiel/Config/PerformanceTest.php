@@ -10,7 +10,6 @@ use Mcustiel\Config\ConfigLoader;
 
 class PerformanceTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testPerformanceWithoutCacheForDifferentReaders()
     {
         $readers = [
