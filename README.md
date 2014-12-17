@@ -22,7 +22,7 @@ Installation
 ### Composer:
 Just add the packagist dependecy: 
 ```javascript  
-"require": {
+    "require": {
 	// ...
         "mcustiel/php-simple-config": ">=1.2.0"
     }	
@@ -96,7 +96,6 @@ $config = $reader->getConfig();
 The config object allows you to access the information in the configuration file:
 ```php
 $config->getFullConfigAsArray(); // This will return the full configuration as an array.
-$config->getFullConfigAsObject(); // This will return the full configuration as a \stdClass object.
 $config->get('PRODUCTION'); // Will return a $config object to access the subkeys defined under "PRODUCTION"
 $config->get('PRODUCTION')->get('DB')->get('user'); // Will return 'root'
 ```
