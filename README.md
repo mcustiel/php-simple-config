@@ -20,7 +20,15 @@ Installation
 ------------
 
 ### Composer:
-Adding this to your composer.json should be enough, this project wasn't added to packagist yet:
+Just add the packagist dependecy: 
+```javascript  
+"require": {
+	// ...
+        "mcustiel/php-simple-config": ">=1.2.0"
+    }	
+```
+
+Or, if you want to get it directly from github, adding this to your composer.json should be enough:
 ```javascript  
 {
     "repositories": [
@@ -30,10 +38,12 @@ Adding this to your composer.json should be enough, this project wasn't added to
         }
     ],
     "require": {
+    	// ...
         "mcustiel/php-simple-config": "dev-master"
     }
 }
 ```
+Or just download the code. :D
 
 How to use it?
 --------------
