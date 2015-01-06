@@ -123,6 +123,9 @@ $loader = new ConfigLoader("/test.ini",
 $config = $loader->load();
 ```
 
+**Note:**
+Please notice that retrieving data from cache, checking if it's cached and writing data to cache takes some time. This makes cached config to be a little slower than json and php loaders, which are really fast. If you use json or php, you can avoid using config cacher (note: json config is faster than php config). 
+
 ###Writing configuration
 To write the configuration to a file you need a Writer object: 
 ```php
