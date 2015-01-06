@@ -1,5 +1,5 @@
 <?php
-namespace Functional\Config;
+namespace Functional;
 
 class ReaderTest extends BaseFunctional
 {

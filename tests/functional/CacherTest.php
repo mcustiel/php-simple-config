@@ -1,5 +1,5 @@
 <?php
-namespace Functional\Config;
+namespace Functional;
 
 use Mcustiel\Config\ConfigLoader;
 use Mcustiel\Config\Cacher;

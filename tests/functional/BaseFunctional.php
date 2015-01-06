@@ -1,5 +1,5 @@
 <?php
-namespace Functional\Config;
+namespace Functional;
 
 use Mcustiel\Config\Config;
 use Mcustiel\Config\Drivers\Reader\php\Reader as PhpReader;

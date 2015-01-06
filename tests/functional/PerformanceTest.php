@@ -1,5 +1,5 @@
 <?php
-namespace Functional\Config;
+namespace Functional;
 
 use Mcustiel\Config\Drivers\Reader\php\Reader as PhpReader;
 use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
@@ -19,7 +19,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
             FIXTURES_PATH . "/test.yml" => new YamlReader()
         ];
         $cyclesCount = [
-            15000
+            10000
         ];
 
         foreach ($readers as $filename => $reader) {
@@ -37,6 +37,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
 
     public function testPerformanceWithCacheForDifferentReaders()
     {
+        echo  "Setting readers with cache\n";
         $readers = [
             FIXTURES_PATH . "/test.php" => new PhpReader(),
             FIXTURES_PATH . "/test.ini" => new IniReader(),
