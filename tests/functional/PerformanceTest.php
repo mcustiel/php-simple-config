@@ -19,7 +19,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
             FIXTURES_PATH . "/test.yml" => new YamlReader()
         ];
         $cyclesCount = [
-            10000
+            15000
         ];
 
         foreach ($readers as $filename => $reader) {

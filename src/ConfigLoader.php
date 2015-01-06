@@ -54,20 +54,20 @@ class ConfigLoader
      */
     public function load()
     {
-        if ($this->cacher === null) {
-            return $this->read();
+        if ($this->cacher !== null) {
+            return $this->readFromCache();
         }
 
-        return $this->readFromCache();
+        return $this->read();
     }
 
     private function readFromCache()
     {
-        $config = $this->cacher->getCachedConfig();
-        if ($config === null) {
-            $config = $this->read();
-            $this->cacher->cacheConfig($config);
+        if (($config = $this->cacher->getCachedConfig()) !== null) {
+            return $config;
         }
+        $config = $this->read();
+        $this->cacher->cacheConfig($config);
 
         return $config;
     }
