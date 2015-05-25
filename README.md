@@ -18,7 +18,7 @@ Also, it allows the developer to cache the configurations to increase the perfor
 
 #### Why Simple?
 
-My native language is spanish and the spanish definition of simple is __"Que es puramente aquello que se dice, sin ninguna característica especial o singular"__, which somehow translates to __"Somethin that is nothing more than what is told, without any special or singular caracteristic"__. That's what I looked for in the design of this library, to be good in what it's intended for and nothing else.
+My native language is spanish and the spanish definition of simple is __"Que es puramente aquello que se dice, sin ninguna característica especial o singular"__, which somehow translates to __"Something that is nothing more than what is told, without any special or singular caracteristic"__. That's what I looked for in the design of this library, to be good in what it's intended for and nothing else.
 
 Installation
 ------------
