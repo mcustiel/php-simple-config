@@ -44,11 +44,21 @@ class RawConfigToArrayConverter
         return $return;
     }
 
+    /**
+     * @param Config|mixed $value
+     *
+     * @return array|mixed
+     */
     private function getConfigValue($value)
     {
         return $this->isAConfig($value) ? $value->getFullConfigAsArray() : $value;
     }
 
+    /**
+     * @param Config|mixed $value
+     *
+     * @return boolean
+     */
     private function isAConfig($value)
     {
         return is_object($value) && $value instanceof Config;

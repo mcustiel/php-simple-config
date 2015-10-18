@@ -18,60 +18,78 @@
 
 namespace Mcustiel\Config;
 
-use Mcustiel\Config\Cacher;
-
 class ConfigLoader
 {
     /**
      * The reader object used to read and parse the file.
-     * @var Mcustiel\Config\ConfigReader
+     * @var \Mcustiel\Config\ConfigReader
      */
     private $reader;
     /**
      * The cacher object used to cache the configuration.
-     * @var Mcustiel\Config\ConfigCacher
+     * @var CacheConfig
      */
-    private $cacher;
+    private $cacheConfig;
     /**
      * The path to the file that contains the config to parse.
      * @var string
      */
     private $name;
 
-    public function __construct($fileName, ConfigReader $reader, Cacher $cacher = null)
+    /**
+     * @param string       $fileName
+     * @param ConfigReader $reader
+     * @param CacheConfig  $cacheconfig
+     */
+    public function __construct(
+        $fileName,
+        ConfigReader $reader,
+        CacheConfig $cacheconfig = null
+    )
     {
         $this->name = $fileName;
         $this->reader = $reader;
-        if ($cacher != null) {
-            $this->cacher = $cacher;
-        }
+        $this->cacheConfig = $cacheconfig;
     }
 
     /**
-     * Loads the configuration from the file and parses it.
+     * Loads the configuration from the file and parses it. If cacheConfig was given in constructor
+     * tryies to load it from cache first.
      *
      * @return \Mcustiel\Config\Mcustiel\Config\Config The resulting Config object.
      */
     public function load()
     {
-        if ($this->cacher !== null) {
+        if ($this->cacheConfig !== null) {
             return $this->readFromCache();
         }
 
         return $this->read();
     }
 
+    /**
+     * Tries to read the configuration from cache, if it's not cached loads it from file and caches it.
+     *
+     * @return array|object
+     */
     private function readFromCache()
     {
-        if (($config = $this->cacher->getCachedConfig()) !== null) {
+        if (($config = $this->cacheConfig->getCacheManager()->get($this->cacheConfig->getKey())) !== null) {
             return $config;
         }
         $config = $this->read();
-        $this->cacher->cacheConfig($config);
+        $this->cacheConfig->getCacheManager()->set(
+            $this->cacheConfig->getKey(),
+            $config,
+            $this->cacheConfig->getTtl()
+        );
 
         return $config;
     }
 
+    /**
+     * Reads a configuration and returns it.
+     */
     private function read()
     {
         $this->reader->read($this->name);

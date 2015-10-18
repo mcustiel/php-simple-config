@@ -5,8 +5,9 @@ use Mcustiel\Config\Drivers\Reader\php\Reader as PhpReader;
 use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
 use Mcustiel\Config\Drivers\Reader\json\Reader as JsonReader;
 use Mcustiel\Config\Drivers\Reader\yaml\Reader as YamlReader;
-use Mcustiel\Config\Cacher;
 use Mcustiel\Config\ConfigLoader;
+use Mcustiel\Config\CacheConfig;
+use Mcustiel\SimpleCache\Drivers\apcu\Cache;
 
 class PerformanceTest extends \PHPUnit_Framework_TestCase
 {
@@ -52,7 +53,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
             $loader = new ConfigLoader(
                 $filename,
                 $reader,
-                new Cacher(FIXTURES_PATH . '/cache/', pathinfo($filename, PATHINFO_BASENAME))
+                new CacheConfig(new Cache(), pathinfo($filename, PATHINFO_BASENAME), 60000)
             );
             foreach ($cyclesCount as $cycles) {
                 $start = microtime(true);

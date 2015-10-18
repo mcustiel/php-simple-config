@@ -52,7 +52,8 @@ class Config
     }
 
     /**
-     * Returns this configuration tree as an array;
+     * Returns this configuration tree as an array.
+     *
      * @return array
      */
     public function getFullConfigAsArray()
@@ -60,6 +61,10 @@ class Config
         return $this->converter->convert($this->config);
     }
 
+    /**
+     * @param string $keyName
+     * @param mixed  $value
+     */
     public function set($keyName, $value)
     {
         $this->config[$keyName] = $value;
