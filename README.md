@@ -16,10 +16,6 @@ The component can read and write these configuration formats.
 
 Also, it allows the developer to cache the configurations to increase the performance when accessing to it. Currently just one configuration cacher is supported: **PHP file**. This cacher saves the parsed configuration in a .php file as a PHP array.
 
-#### Why Simple?
-
-My native language is spanish and the spanish definition of simple is __"Que es puramente aquello que se dice, sin ninguna característica especial o singular"__, which somehow translates to __"Something that is nothing more than what is told, without any special or singular characteristic"__. That's what I looked for in the design of this library, to be good in what it's intended for and nothing else.
-
 Installation
 ------------
 
@@ -112,23 +108,29 @@ $config->get('PRODUCTION')->get('DB')->get('user'); // Will return 'root'
 ```
 
 ####Caching the config
-php-simple-config allows the developer to create a cached version of the configuration to open and parse it faster. To do this you must provide the ConfigLoader with a Cacher object as shown in following code block:
+php-simple-config allows the developer to create a cached version of the configuration to open and parse it faster. To do this you must provide the ConfigLoader with a **CacheConfig** object as shown in following code block:
 
 ```PHP
 use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
-use Mcustiel\Config\Cacher;
+use Mcustiel\Config\CacheConfig;
 
-$loader = new ConfigLoader("/test.ini",
+use Mcustiel\SimpleCache\Drivers\memcache\Cache;
+
+$cacheManager = new Cache();
+$cacheManager->init();
+
+$loader = new ConfigLoader(
+    "/test.ini",
     new IniReader(),
-    new Cacher('/path/to/cache/dir/', 'test.ini.cache')
+    new CacheConfig($cacheManager, 'test.ini.cache', 3600000)
 );
+
 // If the file is already cached, then next sentence loads it from cache; otherwise it's loaded
 // from original config file and then saved in the cached version.
 $config = $loader->load();
 ```
 
-**Note:**
-Please notice that retrieving data from cache, checking if it's cached and writing data to cache takes some time. This makes cached config to be a little slower than json and php loaders, which are really fast. If you use json or php, you can avoid using config cacher (note: json config is faster than php config). 
+CacheConfig receives the instance of \Mcustiel\SimpleCache\Interfaces\CacheInterface, the key to use, and the time to live in milliseconds.
 
 ###Writing configuration
 To write the configuration to a file you need a Writer object: 
