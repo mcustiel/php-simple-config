@@ -45,8 +45,7 @@ class ConfigLoader
         $fileName,
         ConfigReader $reader,
         CacheConfig $cacheconfig = null
-    )
-    {
+    ) {
         $this->name = $fileName;
         $this->reader = $reader;
         $this->cacheConfig = $cacheconfig;
