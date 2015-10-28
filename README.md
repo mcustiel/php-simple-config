@@ -14,7 +14,7 @@ php-simple-config uses a minimalistic approach and supports different types of c
 
 The component can read and write these configuration formats.
 
-Also, it allows the developer to cache the configurations to increase the performance when accessing to it, this is made through mcustiel/php-simple-cache library.
+Also, it allows the developer to cache the configurations to increase the performance when accessing to it, this is made through [mcustiel/php-simple-cache](https://github.com/mcustiel/php-simple-cache) library.
 
 Installation
 ------------
@@ -108,7 +108,7 @@ $config->get('PRODUCTION')->get('DB')->get('user'); // Will return 'root'
 ```
 
 ####Caching the config
-php-simple-config allows the developer to create a cached version of the configuration to open and parse it faster. To do this you must provide the ConfigLoader with a **CacheConfig** object as shown in following code block:
+[php-simple-config](https://github.com/mcustiel/php-simple-cache) allows the developer to create a cached version of the configuration to open and parse it faster. To do this you must provide the ConfigLoader with a **CacheConfig** object as shown in following code block:
 
 ```PHP
 use Mcustiel\Config\Drivers\Reader\ini\Reader as IniReader;
