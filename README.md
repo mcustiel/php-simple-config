@@ -14,7 +14,7 @@ php-simple-config uses a minimalistic approach and supports different types of c
 
 The component can read and write these configuration formats.
 
-Also, it allows the developer to cache the configurations to increase the performance when accessing to it. Currently just one configuration cacher is supported: **PHP file**. This cacher saves the parsed configuration in a .php file as a PHP array.
+Also, it allows the developer to cache the configurations to increase the performance when accessing to it, this is made through mcustiel/php-simple-cache library.
 
 Installation
 ------------
