@@ -48,7 +48,8 @@ Or just download the code. :D
 How to use it?
 --------------
 
-###Reading configuration
+### Reading configuration
+
 First you have to create a configuration file, in this example it is a PHP file. If the format is PHP you must define a variable containing an array with the configuration and return it, for JSON or INI you don't need any special convention:
 ```php
 <?php 
@@ -99,7 +100,8 @@ $loader = new ConfigLoader("/test.ini", new IniReader());
 $config = $loader->load();
 ```
 
-###Accessing configuration
+### Accessing configuration
+
 The config object allows you to access the information in the configuration file:
 ```php
 $config->getFullConfigAsArray(); // This will return the full configuration as an array.
@@ -107,7 +109,8 @@ $config->get('PRODUCTION'); // Will return a $config object to access the subkey
 $config->get('PRODUCTION')->get('DB')->get('user'); // Will return 'root'
 ```
 
-####Caching the config
+#### Caching the config
+
 [php-simple-config](https://github.com/mcustiel/php-simple-cache) allows the developer to create a cached version of the configuration to open and parse it faster. To do this you must provide the ConfigLoader with a **CacheConfig** object as shown in following code block:
 
 ```PHP
@@ -132,7 +135,8 @@ $config = $loader->load();
 
 CacheConfig receives the instance of \Mcustiel\SimpleCache\Interfaces\CacheInterface, the key to use, and the time to live in milliseconds.
 
-###Writing configuration
+### Writing configuration
+
 To write the configuration to a file you need a Writer object: 
 ```php
 $writer = new Mcustiel\Config\Drivers\Writer\ini\Writer($iniConfig);
@@ -205,5 +209,6 @@ DB.pass = root
 DB.host = localhost
 ``` 
 
-###Examples:
+### Examples:
+
 In the unit and functional tests you can see examples of php-simple-config use.
